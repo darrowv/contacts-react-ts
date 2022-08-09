@@ -1,0 +1,60 @@
+.root {
+  text-align: center;
+  width: 100%;
+}
+
+.loginWindow {
+  margin: 100px auto;
+  padding: 40px;
+  background-color: #ff00005a;
+  width: 45%;
+  height: 50%;
+  border-radius: 35px;
+  box-shadow: 10px 0px 21px 4px rgba(34, 60, 80, 0.41);
+
+  .title {
+    margin-bottom: 50px;
+    color: rgb(28, 28, 28);
+    font-weight: 300;
+    font-size: 40px;
+  }
+}
+
+.loginInput,
+.passwordInput {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 400px;
+  margin: auto;
+  font-size: 20px;
+  input {
+    height: 35px;
+    width: 60%;
+    outline: none;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(255, 255, 255, 0.829);
+    padding: 10px;
+    font-size: 18px;
+  }
+}
+
+.loginButton {
+  margin-top: 40px;
+  width: 90px;
+  height: 35px;
+  background-color: white;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+  font-size: 20px;
+  font-weight: 300;
+
+  &:hover {
+    background-color: #23c483;
+    color: white;
+    box-shadow: 10px 0px 21px 4px rgba(34, 60, 80, 0.41);
+  }
+}

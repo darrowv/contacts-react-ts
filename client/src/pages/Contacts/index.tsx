@@ -1,7 +1,17 @@
-import React from 'react'
+import React from "react";
+import ContactInfo from "./ContactInfo";
+import ContactList from "./ContactList";
+import styles from "./Contacts.module.scss";
 
-export const Contacts = () => {
+const Contacts = () => {
   return (
-    <div>Contacts</div>
-  )
-}
+    <div className={styles.root}>
+      <div className={styles.container}>
+        <ContactList />
+        <ContactInfo />
+      </div>
+    </div>
+  );
+};
+
+export default Contacts;
