@@ -55,6 +55,7 @@
       background-color: white;
       font-size: 15px;
       transition: 0.3s;
+      cursor: pointer;
 
       &:hover {
         background-color: #d2fb91d3;
@@ -85,15 +86,17 @@
 .contactInfo {
   width: 65%;
 
-  .contactName, .contactNumber, .contactEmail {
+  .contactName,
+  .contactNumber,
+  .contactEmail {
     text-align: center;
     margin: 20px;
     border: 1px solid rgba(154, 154, 154, 0.379);
     border-radius: 10px;
     transition: 0.3s;
-    
+
     &:hover {
-    border: 1px solid rgba(119, 119, 119, 0.703);
+      border: 1px solid rgba(119, 119, 119, 0.703);
     }
 
     h1 {
@@ -107,5 +110,11 @@
       font-size: 22px;
       font-weight: 300;
     }
+  }
+
+  .chooseContact {
+    font-size: 30px;
+    font-weight: 300;
+    text-align: center;
   }
 }

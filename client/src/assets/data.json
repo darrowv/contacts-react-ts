@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "name": "Kyle Urban",
+      "number": "+7(963)705-85-50",
+      "email": "kyleban@email.com"
+    },
+    {
+      "name": "Opel Astra",
+      "number": "+9(2222)-22-222",
+      "email": "holliwoodd@email.com"
+    },
+    {
+      "name": "Dragon Megan",
+      "number": "+033-44404-44",
+      "email": "drmegaaan@email.com"
+    },
+    {
+      "name": "Chloe Lowbow",
+      "number": "+22-222-44-1332",
+      "email": "glanedref@email.com"
+    }
+  ]
+}
