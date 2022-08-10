@@ -1,10 +1,41 @@
 .root {
-  width: 100%;
-}
-
-.container {
-  margin-top: 100px;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  // background-image: url("../../assets/background.png");
+  background: rgb(251, 172, 94);
+  background: linear-gradient(
+    82deg,
+    rgba(251, 172, 94, 1) 7%,
+    rgba(176, 131, 177, 1) 35%,
+    rgba(41, 178, 155, 1) 60%
+  );
+}
+
+.container {
+  margin: 50px auto;
+  display: flex;
+  width: 800px;
+  min-height: 600px;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.contactList,
+.contactInfo {
+  min-height: 500px;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.705);
+  box-shadow: 10px 0px 21px 4px rgba(34, 60, 80, 0.41);
+}
+
+.contactList {
+  width: 30%;
+}
+
+.contactInfo {
+  width: 65%;
 }

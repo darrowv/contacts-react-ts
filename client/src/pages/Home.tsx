@@ -1,14 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
+import { motion } from "framer-motion";
 
 const Home = () => {
   return (
-    <div className={styles.root}>
+    <motion.div
+      className={styles.root}
+      initial={{ width: 0 }}
+      animate={{ width: "100%" }}
+      exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
+    >
       <Link to={"/login"}>
         <button>LOGIN</button>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
