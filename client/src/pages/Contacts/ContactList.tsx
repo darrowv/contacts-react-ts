@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from "./Contacts.module.scss"
+import React from "react";
+import styles from "./Contacts.module.scss";
 
 const ContactList = () => {
   return (
@@ -9,7 +9,13 @@ const ContactList = () => {
         <button className={styles.addContact}>+</button>
       </div>
       <div className={styles.contactItem}>
-        <p>john doe</p>
+        <span>john doe</span>
+      </div>
+      <div className={styles.contactItem}>
+        <span>gladiator mithcek</span>
+      </div>
+      <div className={styles.contactItem}>
+        <span>conan barbarian</span>
       </div>
     </div>
   );

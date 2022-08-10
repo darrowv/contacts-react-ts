@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // background-image: url("../../assets/background.png");
   background: rgb(251, 172, 94);
   background: linear-gradient(
     82deg,
@@ -15,17 +14,16 @@
 }
 
 .container {
-  margin: 50px auto;
-  display: flex;
   width: 800px;
-  min-height: 600px;
+  height: 100%;
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 
 .contactList,
 .contactInfo {
-  min-height: 500px;
+  height: 450px;
   border-radius: 10px;
   padding: 10px;
   background-color: rgba(255, 255, 255, 0.705);
@@ -34,8 +32,80 @@
 
 .contactList {
   width: 30%;
+
+  .listTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+      border: none;
+      border-radius: 6px;
+      height: 25px;
+      width: 80%;
+      padding: 10px;
+    }
+
+    button {
+      margin-left: 5px;
+      width: 17%;
+      height: 25px;
+      border: none;
+      border-radius: 5px;
+      background-color: white;
+      font-size: 15px;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: #d2fb91d3;
+      }
+    }
+  }
+
+  .contactItem {
+    border-radius: 5px;
+    background: rgba(253, 253, 253, 0.449);
+    margin: 10px auto;
+    padding: 5px;
+    font-size: 20px;
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: white;
+    }
+
+    span {
+      padding: 10px;
+      font-weight: 350;
+    }
+  }
 }
 
 .contactInfo {
   width: 65%;
+
+  .contactName, .contactNumber, .contactEmail {
+    text-align: center;
+    margin: 20px;
+    border: 1px solid rgba(154, 154, 154, 0.379);
+    border-radius: 10px;
+    transition: 0.3s;
+    
+    &:hover {
+    border: 1px solid rgba(119, 119, 119, 0.703);
+    }
+
+    h1 {
+      font-weight: 250;
+      font-size: 35px;
+      color: rgb(145, 12, 12);
+      margin: 5px auto;
+    }
+
+    p {
+      font-size: 22px;
+      font-weight: 300;
+    }
+  }
 }

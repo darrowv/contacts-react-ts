@@ -9,14 +9,14 @@ const Login = () => {
     <motion.div
       className={styles.root}
       initial={{ width: 0 }}
-      animate={{ width: "100%" }}
+      animate={{ width: "100vw" }}
       exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
     >
       <div className={styles.loginWindow}>
         <h1 className={styles.title}>AUTHORIZATION</h1>
         <div className={styles.loginInput}>
-          <p>Login:</p>
-          <input type="text" />
+          <p>Email:</p>
+          <input type="email" />
         </div>
         <div className={styles.passwordInput}>
           <p>Password:</p>

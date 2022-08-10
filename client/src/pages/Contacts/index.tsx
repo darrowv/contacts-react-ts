@@ -9,7 +9,7 @@ const Contacts = () => {
     <motion.div
       className={styles.root}
       initial={{ width: 0 }}
-      animate={{ width: "100%" }}
+      animate={{ width: "100vw" }}
       exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
     >
       <div className={styles.container}>
