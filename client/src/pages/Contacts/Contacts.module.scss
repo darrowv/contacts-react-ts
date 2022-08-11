@@ -63,22 +63,42 @@
     }
   }
 
+  .emptySign {
+    text-align: center;
+    font-weight: 300;
+    margin-top: 30px;
+  }
+
   .contactItem {
     border-radius: 5px;
     background: rgba(253, 253, 253, 0.449);
     margin: 10px auto;
-    padding: 5px;
     font-size: 20px;
     transition: 0.3s;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     &:hover {
       background-color: white;
+
+      .removeContact {
+        opacity: 1;
+      }
     }
 
-    span {
+    .itemName {
       padding: 10px;
       font-weight: 350;
+    }
+
+    .removeContact {
+      padding-right: 10px;
+      font-size: 25px;
+      color: red;
+      opacity: 0;
+      transition: 0.3s;
     }
   }
 }
@@ -116,5 +136,56 @@
     font-size: 30px;
     font-weight: 300;
     text-align: center;
+  }
+}
+
+.addingWindow {
+  width: 50%;
+  height: 450px;
+  text-align: center;
+  display: grid;
+  margin: auto;
+  color: rgb(45, 45, 45);
+
+  h2 {
+    font-size: 30px;
+    font-weight: 300;
+  }
+
+  div {
+    margin: auto;
+    width: 300px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    input {
+      height: 25px;
+      padding: 10px;
+    }
+  }
+
+  button {
+    margin: auto;
+    width: 200px;
+    height: 60px;
+    font-size: 30px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 10px 0px 21px 4px rgba(34, 60, 80, 0.41);
+    cursor: pointer;
+    transition: 0.3s;
+    font-family: "Roboto", "sans-serif";
+
+    span {
+      font-weight: 300;
+    }
+
+    &:hover {
+      background-color: #d2fb91d3;
+    }
   }
 }

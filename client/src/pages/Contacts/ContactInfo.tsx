@@ -5,6 +5,8 @@ import styles from "./Contacts.module.scss";
 const ContactInfo = () => {
   // @ts-ignore
   const contact = useSelector((state) => state.contacts.selectedItem);
+  // @ts-ignore
+  const contacts = useSelector((state) => state.contacts.items);
 
   if (!contact) {
     return (
@@ -12,6 +14,12 @@ const ContactInfo = () => {
         <p className={styles.chooseContact}>Choose contact...</p>
       </div>
     );
+  } else if (!contacts.length) {
+    return (
+      <div className={styles.contactInfo}>
+        <p className={styles.chooseContact}>Add some contacts!</p>
+      </div>
+    )
   }
 
   return (

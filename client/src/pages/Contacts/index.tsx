@@ -7,18 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { setContacts } from "../../redux/contactsSlice";
 import data from "../../assets/data.json";
 
-type ContactsType = {
-  name: string;
-  number: string;
-  email: string;
-};
-
 const Contacts = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setContacts(data.users))
-  })
+  }, [])
 
   return (
     <motion.div
