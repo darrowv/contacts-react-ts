@@ -81,8 +81,7 @@
     align-items: center;
 
     &:hover {
-      background-color: white;
-
+      background-color: rgb(156, 215, 236);
       .removeContact {
         opacity: 1;
       }
@@ -105,6 +104,34 @@
 
 .contactInfo {
   width: 65%;
+  position: relative;
+
+  .editButton {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.6);
+    transition: 0.3s;
+
+    &:hover {
+      color: black;
+    }
+  }
+
+  .editInput {
+    background: rgba(0, 0, 0, 0.127);
+    border: 1px solid rgba(44, 44, 44, 0.384);
+    border-radius: 5px;
+    font-size: 22px;
+    font-weight: 300;
+    outline: none;
+    margin: 14px auto;
+    padding: 4px;
+    text-align: center;
+    width: min-content;
+    font-family: "Roboto", "sans-serif";
+  }
 
   .contactName,
   .contactNumber,
@@ -170,9 +197,9 @@
 
   button {
     margin: auto;
-    width: 200px;
-    height: 60px;
-    font-size: 30px;
+    width: 150px;
+    height: 40px;
+    font-size: 25px;
     border: none;
     border-radius: 10px;
     box-shadow: 10px 0px 21px 4px rgba(34, 60, 80, 0.41);

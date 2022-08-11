@@ -17,16 +17,37 @@ const ContactList: React.FC = () => {
 
   // @ts-ignore
   const contacts = useSelector((state) => state.contacts.items);
+  // @ts-ignore
+  const contact = useSelector((state) => state.contacts.selectedItem);
 
   const onClickAdd = () => {
-    if (name && number && email) {
+    if (
+      name &&
+      number &&
+      email &&
+      name.length < 30 &&
+      number.length < 25 &&
+      email.length < 25
+    ) {
       dispatch(addContact({ name, number, email }));
       setWindow(!window);
       setName("");
       setNumber("");
       setEmail("");
       setSearchValue("");
+    } else {
+      alert(
+        "There is an empty field or the data is too lengthy. Please, enter correct data."
+      );
     }
+  };
+
+  const removeItem = (
+    number: string,
+    event: React.MouseEvent<HTMLSpanElement>
+  ) => {
+    dispatch(removeContact(number));
+    event.stopPropagation();
   };
 
   const filteredContacts = contacts.filter((item: any) =>
@@ -91,10 +112,15 @@ const ContactList: React.FC = () => {
             onClick={() => dispatch(setSelected(item))}
             key={item.number}
             className={styles.contactItem}
+            style={
+              item.name === contact?.name
+                ? { backgroundColor: "rgba(150, 190, 215, 0.5)" }
+                : undefined
+            }
           >
             <span className={styles.itemName}>{item.name}</span>
             <span
-              onClick={() => dispatch(removeContact(item.number))}
+              onClick={(event) => removeItem(item.number, event)}
               className={styles.removeContact}
             >
               ×

@@ -40,14 +40,20 @@ export const contactsSlice = createSlice({
     },
     removeContact(state, action) {
       state.items = state.items.filter((item: any) => item.number !== action.payload);
+
+      state.selectedItem = null
     },
     editContact(state, action) {
-      //чекпоинт
+      state.items = state.items.filter((item: any) => item.number !== action.payload.number);
+      
+      state.items.unshift({ ...action.payload });
+
+      state.selectedItem = action.payload
     }
   },
 });
 
-export const { setContacts, setSelected, addContact, removeContact } =
+export const { setContacts, setSelected, addContact, removeContact, editContact } =
   contactsSlice.actions;
 
 export default contactsSlice.reducer;
