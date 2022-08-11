@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addContact,
+  ContactType,
   removeContact,
   setSelected,
 } from "../../redux/contactsSlice";
 import styles from "./Contacts.module.scss";
 
-const ContactList: React.FC = () => {
+type ContactListProps = {
+  editingMode: boolean;
+};
+
+const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
   const dispatch = useDispatch();
   const [window, setWindow] = useState(false);
   const [name, setName] = useState("");
@@ -19,6 +24,14 @@ const ContactList: React.FC = () => {
   const contacts = useSelector((state) => state.contacts.items);
   // @ts-ignore
   const contact = useSelector((state) => state.contacts.selectedItem);
+
+  const toggleSelectedItem = (item: ContactType) => {
+    if (!editingMode) {
+      dispatch(setSelected(item));
+    } else {
+      alert("You have to complete editing");
+    }
+  };
 
   const onClickAdd = () => {
     if (
@@ -46,11 +59,13 @@ const ContactList: React.FC = () => {
     number: string,
     event: React.MouseEvent<HTMLSpanElement>
   ) => {
-    dispatch(removeContact(number));
-    event.stopPropagation();
+    if (!editingMode) {
+      dispatch(removeContact(number));
+      event.stopPropagation();
+    }
   };
 
-  const filteredContacts = contacts.filter((item: any) =>
+  const filteredContacts = contacts.filter((item: ContactType) =>
     item.name.toUpperCase().includes(searchValue.toUpperCase())
   );
 
@@ -106,10 +121,10 @@ const ContactList: React.FC = () => {
           +
         </button>
       </div>
-      {filteredContacts.map((item: any) => {
+      {filteredContacts.map((item: ContactType) => {
         return (
           <div
-            onClick={() => dispatch(setSelected(item))}
+            onClick={() => toggleSelectedItem(item)}
             key={item.number}
             className={styles.contactItem}
             style={

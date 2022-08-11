@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-type ContactType = {
+export type ContactType = {
   name: string;
   number: string;
   email: string;
@@ -33,27 +33,37 @@ export const contactsSlice = createSlice({
 
       if (!findItem) {
         state.items.unshift({ ...action.payload });
-        state.selectedItem = action.payload
+        state.selectedItem = action.payload;
       } else if (findItem) {
         alert("You already have contact with the same number!");
       }
     },
     removeContact(state, action) {
-      state.items = state.items.filter((item: any) => item.number !== action.payload);
+      state.items = state.items.filter(
+        (item: ContactType) => item.number !== action.payload
+      );
 
-      state.selectedItem = null
+      state.selectedItem = null;
     },
     editContact(state, action) {
-      state.items = state.items.filter((item: any) => item.number !== action.payload.number);
-      
-      state.items.unshift({ ...action.payload });
+      state.items.forEach((item: ContactType) => {
+        if (item.number === action.payload.number) {
+          item.name = action.payload.name;
+          item.email = action.payload.email;
+        }
+      });
 
-      state.selectedItem = action.payload
-    }
+      state.selectedItem = action.payload;
+    },
   },
 });
 
-export const { setContacts, setSelected, addContact, removeContact, editContact } =
-  contactsSlice.actions;
+export const {
+  setContacts,
+  setSelected,
+  addContact,
+  removeContact,
+  editContact,
+} = contactsSlice.actions;
 
 export default contactsSlice.reducer;

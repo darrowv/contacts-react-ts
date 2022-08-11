@@ -1,9 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editContact } from "../../redux/contactsSlice";
 import styles from "./Contacts.module.scss";
 
-const ContactInfo = () => {
+type ContactInfoProps = {
+  getEditingMode: (e: boolean) => void;
+};
+
+const ContactInfo: React.FC<ContactInfoProps> = ({ getEditingMode }) => {
   // @ts-ignore
   const contact = useSelector((state) => state.contacts.selectedItem);
   // @ts-ignore
@@ -15,13 +19,19 @@ const ContactInfo = () => {
   const [newName, setNewName] = useState("");
   const [emailField, setEmailField] = useState(false);
   const [newEmail, setNewEmail] = useState("");
+  const [editingMode, setEditingMode] = useState(false);
+
+  useEffect(() => {
+    getEditingMode(editingMode);
+  }, [editingMode]);
 
   const toggleEditingMode = () => {
     setEditButton(true);
     setNameField(true);
     setEmailField(true);
-    setNewName(contact.name)
-    setNewEmail(contact.email)
+    setEditingMode(true);
+    setNewName(contact.name);
+    setNewEmail(contact.email);
   };
 
   const confirmEditing = () => {
@@ -32,10 +42,13 @@ const ContactInfo = () => {
       setEditButton(false);
       setNameField(false);
       setEmailField(false);
+      setEditingMode(false);
       setNewName("");
       setNewEmail("");
     } else {
-      alert("There is an empty field or the data is too lengthy. Please, enter correct data.")
+      alert(
+        "There is an empty field or the data is too lengthy. Please, enter correct data."
+      );
     }
   };
 

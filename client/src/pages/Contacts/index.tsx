@@ -9,10 +9,15 @@ import data from "../../assets/data.json";
 
 const Contacts = () => {
   const dispatch = useDispatch();
+  const [editingMode, setEditingMode] = useState(false)
 
   useEffect(() => {
     dispatch(setContacts(data.users))
   }, [])
+
+  const getEditingMode = (mode: boolean) => {
+    setEditingMode(mode)
+  }
 
   return (
     <motion.div
@@ -22,8 +27,8 @@ const Contacts = () => {
       exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
     >
       <div className={styles.container}>
-        <ContactList />
-        <ContactInfo />
+        <ContactList editingMode={editingMode} />
+        <ContactInfo getEditingMode={getEditingMode} />
       </div>
     </motion.div>
   );
