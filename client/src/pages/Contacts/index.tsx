@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { setContacts } from "../../redux/contactsSlice";
 import data from "../../assets/data.json";
+import { Link } from "react-router-dom";
 
 const Contacts = () => {
   const dispatch = useDispatch();
@@ -36,9 +37,11 @@ const Contacts = () => {
         <ContactList editingMode={editingMode} />
         <ContactInfo getEditingMode={getEditingMode} />
       </div>
-      <button onClick={onClickLogOut} className={styles.logoutBtn}>
-        log out
-      </button>
+      <Link to={"/login"}>
+        <button onClick={onClickLogOut} className={styles.logoutBtn}>
+          log out
+        </button>
+      </Link>
     </motion.div>
   );
 };

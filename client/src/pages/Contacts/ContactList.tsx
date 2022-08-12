@@ -34,6 +34,13 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
     }
   };
 
+  const onClickCancel = () => {
+    setWindow(!window);
+    setName("");
+    setNumber("");
+    setEmail("");
+  }
+
   const onClickAdd = () => {
     if (
       name &&
@@ -72,42 +79,55 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
 
   if (window) {
     return (
-      <div className={styles.addingWindow}>
-        <h2>Adding new contact</h2>
-        <div>
-          <span>Name:</span>
-          <input
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            type="text"
-          />
-        </div>
-        <div>
-          <span>Number:</span>
-          <input
-            value={number}
-            onChange={(e) => setNumber(e.target.value)}
-            type="text"
-          />
-        </div>
-        <div>
-          {" "}
-          <span>Email:</span>
-          <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-          />
-        </div>
-        <button onClick={() => onClickAdd()}>
-          <span>add</span>
-        </button>
-      </div>
+      <AnimatePresence>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          exit={{ scale: 0 }}
+          transition={{ ease: "easeInOut", duration: 0.3 }}
+          className={styles.addingWindow}
+        >
+          <h2>Adding new contact</h2>
+          <div>
+            <span>Name:</span>
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              type="text"
+            />
+          </div>
+          <div>
+            <span>Number:</span>
+            <input
+              value={number}
+              onChange={(e) => setNumber(e.target.value)}
+              type="text"
+            />
+          </div>
+          <div>
+            {" "}
+            <span>Email:</span>
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              type="email"
+            />
+          </div>
+          <div>
+            <button className={styles.cancelBtn} onClick={() => onClickCancel()}>
+              <span>cancel</span>
+            </button>
+            <button className={styles.addBtn} onClick={() => onClickAdd()}>
+              <span>add</span>
+            </button>
+          </div>
+        </motion.div>
+      </AnimatePresence>
     );
   }
 
   return (
-    <div className={styles.contactList}>
+    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className={styles.contactList}>
       <div className={styles.listTop}>
         <input
           value={searchValue}
@@ -122,14 +142,14 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
           +
         </button>
       </div>
-      {filteredContacts.map((item: ContactType) => {
-        return (
-          <AnimatePresence>
+      <AnimatePresence>
+        {filteredContacts.map((item: ContactType) => {
+          return (
             <motion.div
-              initial={{ x: 0 }}
+              initial={{ x: -500 }}
               animate={{ x: 0 }}
-              exit={{ x: 120 }}
-              transition={{  duration: 1 }}
+              exit={{ x: 500 }}
+              transition={{ ease: "easeOut", duration: 0.2 }}
               onClick={() => toggleSelectedItem(item)}
               key={item.number}
               className={styles.contactItem}
@@ -147,10 +167,10 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
                 ×
               </span>
             </motion.div>
-          </AnimatePresence>
-        );
-      })}
-    </div>
+          );
+        })}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 

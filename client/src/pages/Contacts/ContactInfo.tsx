@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editContact } from "../../redux/contactsSlice";
 import styles from "./Contacts.module.scss";
+import { motion, AnimatePresence } from "framer-motion";
 
 type ContactInfoProps = {
   getEditingMode: (e: boolean) => void;
@@ -86,36 +87,42 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ getEditingMode }) => {
           </span>
         )}
       </div>
-      <div className={styles.contactName}>
-        <h1>Fullname</h1>
-        {nameField ? (
-          <input
-            value={newName}
-            onChange={(e) => setNewName(e.target.value)}
-            type="text"
-            className={styles.editInput}
-          />
-        ) : (
-          <p>{contact.name}</p>
-        )}
-      </div>
-      <div className={styles.contactNumber}>
-        <h1>Number</h1>
-        <p>{contact.number}</p>
-      </div>
-      <div className={styles.contactEmail}>
-        <h1>Email</h1>
-        {emailField ? (
-          <input
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-            type="text"
-            className={styles.editInput}
-          />
-        ) : (
-          <p>{contact.email}</p>
-        )}
-      </div>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ ease: "easeInOut", duration: 0.3 }}
+      >
+        <div className={styles.contactName}>
+          <h1>Fullname</h1>
+          {nameField ? (
+            <input
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              type="text"
+              className={styles.editInput}
+            />
+          ) : (
+            <p>{contact.name}</p>
+          )}
+        </div>
+        <div className={styles.contactNumber}>
+          <h1>Number</h1>
+          <p>{contact.number}</p>
+        </div>
+        <div className={styles.contactEmail}>
+          <h1>Email</h1>
+          {emailField ? (
+            <input
+              value={newEmail}
+              onChange={(e) => setNewEmail(e.target.value)}
+              type="text"
+              className={styles.editInput}
+            />
+          ) : (
+            <p>{contact.email}</p>
+          )}
+        </div>
+      </motion.div>
     </div>
   );
 };

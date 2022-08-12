@@ -169,7 +169,7 @@
 
 .addingWindow {
   width: 50%;
-  height: 450px;
+  height: 430px;
   text-align: center;
   display: grid;
   margin: auto;
@@ -177,6 +177,7 @@
 
   h2 {
     font-size: 30px;
+    margin-bottom: -20px;
     font-weight: 300;
   }
 
@@ -191,29 +192,43 @@
     justify-content: space-between;
 
     input {
-      height: 25px;
+      height: 30px;
+      width: 150px;
       padding: 10px;
+      font-size: 17px;
+      font-family: "Roboto", "sans-serif";
+      font-weight: 300;
+      background-color: rgba(255, 255, 255, 0.629);
+      border: none;
+      outline: none;
+      border-radius: 5px;
     }
   }
 
-  button {
+  .addBtn,
+  .cancelBtn {
     margin: auto;
-    width: 150px;
-    height: 40px;
-    font-size: 25px;
+    width: 70px;
+    height: 30px;
+    font-size: 20px;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 10px 0px 21px 4px rgba(34, 60, 80, 0.41);
     cursor: pointer;
     transition: 0.3s;
     font-family: "Roboto", "sans-serif";
+    font-weight: 300;
+  }
 
-    span {
-      font-weight: 300;
-    }
-
+  .addBtn {
     &:hover {
       background-color: #d2fb91d3;
+    }
+  }
+
+  .cancelBtn {
+    &:hover {
+      background-color: #ff5a5ad3;
     }
   }
 }
