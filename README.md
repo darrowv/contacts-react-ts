@@ -32,4 +32,4 @@ $ npm start
 Для стилей использовал CSS-препроцессор Sass. Приложение написано на TypeScript. Для анимаций использовал библиотеку Framer Motion.
 Остальное: axios, react-router, react hooks, localStorage и т.д.
 
-Как сервер для реализации авторизации был использован данный репозиторий из открытого доступа: (fake-api-jwt-json-server)[https://github.com/techiediaries/fake-api-jwt-json-server]
+Как сервер для реализации авторизации был использован данный репозиторий из открытого доступа: [fake-api-jwt-json-server](https://github.com/techiediaries/fake-api-jwt-json-server)
