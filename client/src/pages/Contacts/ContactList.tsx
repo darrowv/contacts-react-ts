@@ -7,6 +7,7 @@ import {
   setSelected,
 } from "../../redux/contactsSlice";
 import styles from "./Contacts.module.scss";
+import { motion, AnimatePresence } from "framer-motion";
 
 type ContactListProps = {
   editingMode: boolean;
@@ -123,24 +124,30 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
       </div>
       {filteredContacts.map((item: ContactType) => {
         return (
-          <div
-            onClick={() => toggleSelectedItem(item)}
-            key={item.number}
-            className={styles.contactItem}
-            style={
-              item.name === contact?.name
-                ? { backgroundColor: "rgba(150, 190, 215, 0.5)" }
-                : undefined
-            }
-          >
-            <span className={styles.itemName}>{item.name}</span>
-            <span
-              onClick={(event) => removeItem(item.number, event)}
-              className={styles.removeContact}
+          <AnimatePresence>
+            <motion.div
+              initial={{ x: 0 }}
+              animate={{ x: 0 }}
+              exit={{ x: 120 }}
+              transition={{  duration: 1 }}
+              onClick={() => toggleSelectedItem(item)}
+              key={item.number}
+              className={styles.contactItem}
+              style={
+                item.name === contact?.name
+                  ? { backgroundColor: "rgba(150, 190, 215, 0.5)" }
+                  : undefined
+              }
             >
-              ×
-            </span>
-          </div>
+              <span className={styles.itemName}>{item.name}</span>
+              <span
+                onClick={(event) => removeItem(item.number, event)}
+                className={styles.removeContact}
+              >
+                ×
+              </span>
+            </motion.div>
+          </AnimatePresence>
         );
       })}
     </div>

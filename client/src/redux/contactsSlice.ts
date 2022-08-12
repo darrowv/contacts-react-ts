@@ -63,7 +63,7 @@ export const {
   setSelected,
   addContact,
   removeContact,
-  editContact,
+  editContact
 } = contactsSlice.actions;
 
 export default contactsSlice.reducer;

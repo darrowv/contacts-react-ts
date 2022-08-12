@@ -9,15 +9,21 @@ import data from "../../assets/data.json";
 
 const Contacts = () => {
   const dispatch = useDispatch();
-  const [editingMode, setEditingMode] = useState(false)
+  const [editingMode, setEditingMode] = useState(false);
+  const [render, setRender] = useState(false);
 
   useEffect(() => {
-    dispatch(setContacts(data.users))
-  }, [])
+    dispatch(setContacts(data.users));
+  }, []);
 
   const getEditingMode = (mode: boolean) => {
-    setEditingMode(mode)
-  }
+    setEditingMode(mode);
+  };
+
+  const onClickLogOut = () => {
+    localStorage.clear();
+    setRender(!render);
+  };
 
   return (
     <motion.div
@@ -30,6 +36,9 @@ const Contacts = () => {
         <ContactList editingMode={editingMode} />
         <ContactInfo getEditingMode={getEditingMode} />
       </div>
+      <button onClick={onClickLogOut} className={styles.logoutBtn}>
+        log out
+      </button>
     </motion.div>
   );
 };

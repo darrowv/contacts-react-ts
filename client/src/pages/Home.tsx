@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 import { motion } from "framer-motion";
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
     <motion.div
       className={styles.root}
