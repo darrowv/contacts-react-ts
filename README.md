@@ -35,3 +35,5 @@ $ npm start
 Остальное: axios, react-router, react hooks, localStorage и т.д.
 
 Как сервер для реализации авторизации был использован данный репозиторий из открытого доступа: [fake-api-jwt-json-server](https://github.com/techiediaries/fake-api-jwt-json-server)
+
+Автор иконки приложения: [Andrean Prabowo](https://www.flaticon.com/ru/authors/andrean-prabowo)
