@@ -8,6 +8,7 @@ import {
 } from "../../redux/contactsSlice";
 import styles from "./Contacts.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
+import { RootState } from "../../redux/store";
 
 type ContactListProps = {
   editingMode: boolean;
@@ -21,10 +22,8 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
   const [email, setEmail] = useState("");
   const [searchValue, setSearchValue] = useState("");
 
-  // @ts-ignore
-  const contacts = useSelector((state) => state.contacts.items);
-  // @ts-ignore
-  const contact = useSelector((state) => state.contacts.selectedItem);
+  const contacts = useSelector((state: RootState) => state.contacts.items);
+  const contact = useSelector((state: RootState) => state.contacts.selectedItem);
 
   const toggleSelectedItem = (item: ContactType) => {
     if (!editingMode) {
@@ -39,7 +38,7 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
     setName("");
     setNumber("");
     setEmail("");
-  }
+  };
 
   const onClickAdd = () => {
     if (
@@ -50,7 +49,8 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
       number.length < 25 &&
       email.length < 25
     ) {
-      dispatch(addContact({ name, number, email }));
+      const contact = { name, number, email };
+      dispatch(addContact(contact));
       setWindow(!window);
       setName("");
       setNumber("");
@@ -114,7 +114,10 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
             />
           </div>
           <div>
-            <button className={styles.cancelBtn} onClick={() => onClickCancel()}>
+            <button
+              className={styles.cancelBtn}
+              onClick={() => onClickCancel()}
+            >
               <span>cancel</span>
             </button>
             <button className={styles.addBtn} onClick={() => onClickAdd()}>
@@ -127,7 +130,11 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
   }
 
   return (
-    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} className={styles.contactList}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className={styles.contactList}
+    >
       <div className={styles.listTop}>
         <input
           value={searchValue}

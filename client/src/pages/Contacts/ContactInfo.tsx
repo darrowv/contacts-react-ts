@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { editContact } from "../../redux/contactsSlice";
 import styles from "./Contacts.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
+import { RootState } from "../../redux/store";
 
 type ContactInfoProps = {
   getEditingMode: (e: boolean) => void;
 };
 
 const ContactInfo: React.FC<ContactInfoProps> = ({ getEditingMode }) => {
-  // @ts-ignore
-  const contact = useSelector((state) => state.contacts.selectedItem);
-  // @ts-ignore
-  const contacts = useSelector((state) => state.contacts.items);
+
+  const contact = useSelector((state: RootState) => state.contacts.selectedItem);
+  const contacts = useSelector((state: RootState) => state.contacts.items);
 
   const dispatch = useDispatch();
   const [editButton, setEditButton] = useState(false);
@@ -31,14 +31,16 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ getEditingMode }) => {
     setNameField(true);
     setEmailField(true);
     setEditingMode(true);
-    setNewName(contact.name);
-    setNewEmail(contact.email);
+    if(contact) {
+      setNewName(contact.name);
+      setNewEmail(contact.email);
+    }
   };
 
   const confirmEditing = () => {
     if (newName && newEmail && newName.length < 30 && newEmail.length < 25) {
       dispatch(
-        editContact({ name: newName, number: contact.number, email: newEmail })
+        editContact({ name: newName, number: contact?.number, email: newEmail })
       );
       setEditButton(false);
       setNameField(false);
