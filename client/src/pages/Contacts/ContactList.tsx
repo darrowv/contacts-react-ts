@@ -156,7 +156,8 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
             <motion.div
               initial={{ x: -500 }}
               animate={{ x: 0 }}
-              transition={{ ease: "easeInOut", duration: 0.2 }}
+              exit={{ x: 500, opacity: 0, visibility: "hidden" }}
+              transition={{ ease: "easeInOut", duration: 0.3 }}
               onClick={() => toggleSelectedItem(item)}
               key={item.number}
               className={styles.contactItem}
