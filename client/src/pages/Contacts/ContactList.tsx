@@ -23,7 +23,9 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
   const [searchValue, setSearchValue] = useState("");
 
   const contacts = useSelector((state: RootState) => state.contacts.items);
-  const contact = useSelector((state: RootState) => state.contacts.selectedItem);
+  const contact = useSelector(
+    (state: RootState) => state.contacts.selectedItem
+  );
 
   const toggleSelectedItem = (item: ContactType) => {
     if (!editingMode) {
@@ -154,8 +156,7 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
             <motion.div
               initial={{ x: -500 }}
               animate={{ x: 0 }}
-              exit={{ x: 500 }}
-              transition={{ ease: "easeOut", duration: 0.2 }}
+              transition={{ ease: "easeInOut", duration: 0.2 }}
               onClick={() => toggleSelectedItem(item)}
               key={item.number}
               className={styles.contactItem}

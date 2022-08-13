@@ -1,12 +1,10 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.scss";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 
 const Login: React.FC = () => {
-  const dispatch = useDispatch();
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [render, setRender] = useState(false);
@@ -37,7 +35,14 @@ const Login: React.FC = () => {
     <AnimatePresence>
       <div className={styles.letsGo}>
         <Link to={"/contacts"}>
-          <motion.button initial={{scale: 0}} animate={{scale: 1}} exit={{scale: 0}} className={styles.letsgoBtn}>LET'S GO </motion.button>
+          <motion.button
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0 }}
+            className={styles.letsgoBtn}
+          >
+            LET'S GO{" "}
+          </motion.button>
         </Link>
         <button onClick={onClickLogOut} className={styles.logoutBtn}>
           log out

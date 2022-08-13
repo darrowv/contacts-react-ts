@@ -39,7 +39,7 @@
   flex-basis: 40%;
   height: 520px;
   margin-right: 6px;
-  overflow: scroll;
+  overflow-y: scroll;
 
   @media (max-width: 480px) {
     height: 400px;

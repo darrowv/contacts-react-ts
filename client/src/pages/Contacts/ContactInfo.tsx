@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { editContact } from "../../redux/contactsSlice";
 import styles from "./Contacts.module.scss";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { RootState } from "../../redux/store";
 
 type ContactInfoProps = {
@@ -10,8 +10,9 @@ type ContactInfoProps = {
 };
 
 const ContactInfo: React.FC<ContactInfoProps> = ({ getEditingMode }) => {
-
-  const contact = useSelector((state: RootState) => state.contacts.selectedItem);
+  const contact = useSelector(
+    (state: RootState) => state.contacts.selectedItem
+  );
   const contacts = useSelector((state: RootState) => state.contacts.items);
 
   const dispatch = useDispatch();
@@ -24,14 +25,14 @@ const ContactInfo: React.FC<ContactInfoProps> = ({ getEditingMode }) => {
 
   useEffect(() => {
     getEditingMode(editingMode);
-  }, [editingMode]);
+  }, [getEditingMode, editingMode]);
 
   const toggleEditingMode = () => {
     setEditButton(true);
     setNameField(true);
     setEmailField(true);
     setEditingMode(true);
-    if(contact) {
+    if (contact) {
       setNewName(contact.name);
       setNewEmail(contact.email);
     }

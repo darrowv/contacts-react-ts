@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
+import { createSlice } from "@reduxjs/toolkit";
 import { getContactsFromLS } from "../utils/getContactsFromLS";
 
 export type ContactType = {
@@ -58,8 +57,8 @@ export const contactsSlice = createSlice({
       state.selectedItem = action.payload;
     },
     cleanItems(state) {
-      state.items = []
-    }
+      state.items = [];
+    },
   },
 });
 
@@ -69,7 +68,7 @@ export const {
   addContact,
   removeContact,
   editContact,
-  cleanItems
+  cleanItems,
 } = contactsSlice.actions;
 
 export default contactsSlice.reducer;
