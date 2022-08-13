@@ -81,14 +81,14 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
     return (
       <AnimatePresence>
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          exit={{ scale: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ ease: "easeInOut", duration: 0.3 }}
           className={styles.addingWindow}
         >
-          <h2>Adding new contact</h2>
-          <div>
+          <h2>New contact</h2>
+          <div className={styles.dataDivs}>
             <span>Name:</span>
             <input
               value={name}
@@ -96,7 +96,7 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
               type="text"
             />
           </div>
-          <div>
+          <div className={styles.dataDivs}>
             <span>Number:</span>
             <input
               value={number}
@@ -104,8 +104,7 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
               type="text"
             />
           </div>
-          <div>
-            {" "}
+          <div className={styles.dataDivs}>
             <span>Email:</span>
             <input
               value={email}
@@ -113,7 +112,7 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
               type="email"
             />
           </div>
-          <div>
+          <div className={styles.windowButtons}>
             <button
               className={styles.cancelBtn}
               onClick={() => onClickCancel()}
@@ -161,7 +160,7 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
               key={item.number}
               className={styles.contactItem}
               style={
-                item.name === contact?.name
+                item.number === contact?.number
                   ? { backgroundColor: "rgba(150, 190, 215, 0.5)" }
                   : undefined
               }
