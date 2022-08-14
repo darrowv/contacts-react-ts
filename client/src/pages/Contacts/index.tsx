@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ContactInfo from "./ContactInfo";
 import ContactList from "./ContactList";
 import styles from "./Contacts.module.scss";
@@ -24,7 +24,7 @@ const Contacts = () => {
     setEditingMode(mode);
   };
 
-  const onClickLogOut = () => {
+  const onClickLogOut = (e: React.MouseEvent<HTMLButtonElement>) => {
     const result = window.confirm(
       "All contacts will be lost. Are you sure you want to log out?"
     );
@@ -32,6 +32,8 @@ const Contacts = () => {
       localStorage.clear();
       dispatch(cleanItems());
       setRender(!render);
+    } else if (!result) {
+      e.preventDefault();
     }
   };
 
@@ -44,10 +46,18 @@ const Contacts = () => {
     >
       <div className={styles.container}>
         <ContactList editingMode={editingMode} />
-        <ContactInfo getEditingMode={getEditingMode} />
+        <motion.div
+          initial={{ rotateY: 90, opacity: 0 }}
+          animate={{ rotateY: 0, opacity: 1 }}
+          exit={{ rotateY: 90, opacity: 0 }}
+          transition={{ ease: "easeInOut", duration: 0.7 }}
+          className={styles.contactInfo}
+        >
+          <ContactInfo getEditingMode={getEditingMode} />
+        </motion.div>
       </div>
       <Link to={"/login"}>
-        <button onClick={onClickLogOut} className={styles.logoutBtn}>
+        <button onClick={(e) => onClickLogOut(e)} className={styles.logoutBtn}>
           log out
         </button>
       </Link>
