@@ -1,55 +1,38 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Login.module.scss";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import axios from "axios";
 
 const Login: React.FC = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [render, setRender] = useState(false);
-
+  const [invalid, setInvalid] = useState(false);
+  const logBtnRef = useRef<HTMLButtonElement>(null);
   const token = localStorage.getItem("token");
 
   const onClickAuth = () => {
-    axios({
-      method: "post",
-      url: "http://localhost:8000/auth/login",
-      data: {
-        email: login,
-        password,
-      },
-    }).then((res) => {
-      res.data.access_token &&
-        localStorage.setItem("token", res.data.access_token);
-      setRender(!render);
-    });
+    if (login && password) {
+      axios({
+        method: "post",
+        url: "http://localhost:8000/auth/login",
+        data: {
+          email: login,
+          password,
+        },
+      })
+        .then((res) => {
+          res.data.access_token &&
+            localStorage.setItem("token", res.data.access_token);
+        })
+        .then(() => {
+          logBtnRef.current?.click();
+        })
+        .catch(() => {
+          setInvalid(true);
+        });
+    }
   };
-
-  const onClickLogOut = () => {
-    localStorage.clear();
-    setRender(!render);
-  };
-
-  const letsGo = (
-    <AnimatePresence>
-      <div className={styles.letsGo}>
-        <Link to={"/contacts"}>
-          <motion.button
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-            className={styles.letsgoBtn}
-          >
-            LET'S GO{" "}
-          </motion.button>
-        </Link>
-        <button onClick={onClickLogOut} className={styles.logoutBtn}>
-          log out
-        </button>
-      </div>
-    </AnimatePresence>
-  );
 
   return (
     <motion.div
@@ -58,12 +41,15 @@ const Login: React.FC = () => {
       animate={{ width: "100vw" }}
       exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
     >
-      {token ? (
-        letsGo
-      ) : (
+      {token ? null : (
         <>
           <div className={styles.loginWindow}>
             <h1 className={styles.title}>AUTHORIZATION</h1>
+            {invalid && (
+              <p className={styles.invalidSign}>
+                invalid login and/or password
+              </p>
+            )}
             <div className={styles.emailInput}>
               <p>Login:</p>
               <input
@@ -80,10 +66,15 @@ const Login: React.FC = () => {
                 type="password"
               />
             </div>
-
-            <button onClick={onClickAuth} className={styles.loginButton}>
-              CHECK
-            </button>
+            <Link to="/contacts">
+              <button
+                ref={logBtnRef}
+                onClick={onClickAuth}
+                className={styles.loginButton}
+              >
+                LOGIN
+              </button>
+            </Link>
           </div>
         </>
       )}

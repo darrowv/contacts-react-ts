@@ -1,25 +1,51 @@
 .root {
   text-align: center;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+  margin: auto;
+  max-width: 1200px;
+  padding: 100px 15px;
 }
 
 .loginWindow {
   margin: auto;
   padding: 10px;
+  position: relative;
   background: rgba(255, 255, 255, 0.608);
-  width: 550px;
-  height: 320px;
+  width: 45%;
+  height: 350px;
   border-radius: 35px;
   box-shadow: 10px 0px 21px 4px rgba(34, 60, 80, 0.41);
+
+  @media (max-width: 1200px) {
+    width: 50%;
+  }
+
+  @media (max-width: 900px) {
+    width: 70%;
+  }
+
+  @media (max-width: 600px) {
+    width: 80%;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+  }
 
   .title {
     margin-bottom: 30px;
     color: rgb(0, 0, 0);
     font-weight: 200;
     font-size: 35px;
+    @media (max-width: 650px) {
+      font-size: 30px;
+    }
+  }
+
+  .invalidSign {
+    color: rgba(255, 67, 67, 0.745);
+    margin: 0;
+    margin-top: -10px;
+    padding: 0;
   }
 }
 
@@ -28,11 +54,27 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 400px;
+  width: 65%;
   margin: auto;
   font-size: 20px;
   font-weight: 300;
   color: rgb(0, 0, 0);
+
+  @media (max-width: 1200px) {
+    width: 70%;
+  }
+
+  @media (max-width: 900px) {
+    width: 75%;
+  }
+
+  @media (max-width: 600px) {
+    width: 80%;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+  }
 
   input {
     height: 35px;

@@ -14,7 +14,10 @@ const App = () => {
     <AnimatePresence>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={token ? <Navigate to="/" /> : <Login />}
+        />
         <Route
           path="/contacts"
           element={!token ? <Navigate to="/login" /> : <Contacts />}

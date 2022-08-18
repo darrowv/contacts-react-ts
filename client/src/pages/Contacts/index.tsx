@@ -56,7 +56,7 @@ const Contacts = () => {
           <ContactInfo getEditingMode={getEditingMode} />
         </motion.div>
       </div>
-      <Link to={"/login"}>
+      <Link to="/login">
         <button onClick={(e) => onClickLogOut(e)} className={styles.logoutBtn}>
           log out
         </button>

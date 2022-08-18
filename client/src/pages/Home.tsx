@@ -11,7 +11,7 @@ const Home: React.FC = () => {
       animate={{ width: "100vw" }}
       exit={{ x: window.innerWidth, transition: { duration: 0.5 } }}
     >
-      <Link to={"/login"}>
+      <Link to="/contacts">
         <button>LOGIN</button>
       </Link>
     </motion.div>
