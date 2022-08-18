@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ContactType,
@@ -6,9 +7,12 @@ import {
   setSelected,
 } from "../../redux/contactsSlice";
 import styles from "./Contacts.module.scss";
+//@ts-ignore
+import debounce from 'lodash.debounce';
 import { motion, AnimatePresence } from "framer-motion";
 import { RootState } from "../../redux/store";
 import AddingWindow from "./AddingWindow";
+
 
 type ContactListProps = {
   editingMode: boolean;
@@ -23,6 +27,14 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
   const contact = useSelector(
     (state: RootState) => state.contacts.selectedItem
   );
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value)
+  }
+
+  //debouncing our search request
+  const debouncedResults = useMemo(() => debounce(handleChange, 300), []);
+  useEffect(() => () => debouncedResults.cancel() );
 
   //filtering array of contacts in order to enable search feature
   const filteredContacts = contacts.filter((item: ContactType) =>
@@ -62,8 +74,7 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
       >
         <div className={styles.listTop}>
           <input
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
+            onChange={debouncedResults}
             className={styles.searchContact}
             type="text"
           />
@@ -81,10 +92,8 @@ const ContactList: React.FC<ContactListProps> = ({ editingMode }) => {
                 <motion.div
                   initial={{ x: 300 }}
                   animate={{ x: 0 }}
-                  // having some issues with this exit animation  
-                  // alongside filtering array so I removed it
-                  // exit={{ x: -300, opacity: 0 }}
-                  transition={{ ease: "easeOut", duration: 0.4 }}
+                  exit={{ x: -300, opacity: 0 }}
+                  transition={{ ease: "easeInOut", duration: 0.3 }}
                   onClick={() => toggleSelectedItem(item)}
                   key={item.number}
                   className={styles.contactItem}
