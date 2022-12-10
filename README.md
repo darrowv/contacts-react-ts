@@ -7,7 +7,7 @@
 <p>Логин: admin
 <p>Пароль: admin
 
-Версия без авторизации для быстрового теста [тут](https://darrowv.github.io/contacts/)
+Версия без авторизации для быстрого теста [тут](https://darrowv.github.io/contacts/)
 
 ## Как запустить
 
